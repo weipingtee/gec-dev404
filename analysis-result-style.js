@@ -1,13 +1,4 @@
-import {
-    TouchableOpacity,
-    View,
-    Text,
-    SafeAreaView,
-    StyleSheet,
-    Image,
-} from 'react-native';
-
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -60,12 +51,14 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     userImage: {
-        width: 135,
-        height: 135,
+        width: 140,
+        height: 140,
         borderRadius: 1000,
         zIndex: 1,
         position: 'absolute',
-        left: 117,
-        top: 215,
+        left: '31.5%', 
+        top: '28.1%',
     },
 });  
+
+export default styles;
