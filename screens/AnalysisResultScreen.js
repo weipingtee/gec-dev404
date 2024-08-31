@@ -40,26 +40,28 @@ const AnalysisResultScreen = () => {
     }
 
     return (
-        <View style={styles.pageContainer}>
-            <Icon name="arrow-back" size={24} color="#000" />
-            <Text style={styles.heading}>Your Best Colours</Text>
-            <Image style={styles.colorPalette} source={imageSource} />
-            <Image
-                style={styles.userImage}
-                source={require('../assets/cool-summer-user.jpg')}
-            />
-            <Text style={styles.subheadingText}>Cool Summer</Text>
-            <View style={styles.line} />
-            <Text style={styles.paragraph}>{colorToneDescription}</Text>
-            <CustomButton
-                title="Get Recommendations"
-                onPress={() => navigation.navigate('RecommendationScreen')}
-            />
-            <CustomButton
-                title="More about Cool Summer"
-                onPress={() => navigation.navigate('CoolSummer')}
-            />
-        </View>
+        <ScrollView style={styles.container}>
+            <View style={styles.pageContainer}>
+                <Icon name="arrow-back" size={24} color="#000" />
+                <Text style={styles.heading}>Your Best Colours</Text>
+                <Image style={styles.colorPalette} source={imageSource} />
+                <Image
+                    style={styles.userImage}
+                    source={require('../assets/cool-summer-user.jpg')}
+                />
+                <Text style={styles.subheadingText}>Cool Summer</Text>
+                <View style={styles.line} />
+                <Text style={styles.paragraph}>{colorToneDescription}</Text>
+                <CustomButton
+                    title="Get Recommendations"
+                    onPress={() => navigation.navigate('RecommendationScreen')}
+                />
+                <CustomButton
+                    title="More about Cool Summer"
+                    onPress={() => navigation.navigate('CoolSummer')}
+                />
+            </View>
+        </ScrollView>
     );
 };
 
