@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
+    Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
@@ -125,7 +126,14 @@ const AnalysisScreen = () => {
             });
     
             if (!response.ok) {
-                throw new Error('Failed to upload image');
+                const errorData = await response.json();
+    
+                if (response.status === 400 && errorData.detail && errorData.detail.includes("Value Error")) {
+                    Alert.alert("Error", "No faces detected in the image.");
+                } else {
+                    throw new Error(errorData.detail || 'Failed to upload image');
+                }
+                return;
             }
     
             const data = await response.json();
@@ -136,7 +144,7 @@ const AnalysisScreen = () => {
                 userImage: photo,
             });
         } catch (error) {
-            console.error('Error uploading image:', error);
+            Alert.alert("Error", error.message);
         }
     };
 
