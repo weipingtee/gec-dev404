@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#FF4D4D',
+    color: '#000000',
   },
   columnWrapper: {
     justifyContent: 'space-between', 
