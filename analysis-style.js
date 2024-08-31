@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
       textAlign: 'left',
   },
   imagePicker: {
-      width: 300,
-      height: 300,
+      width: 250,
+      height: 250,
       borderRadius: 20,
       borderWidth: 2,
       borderColor: '#FF7E5F',
