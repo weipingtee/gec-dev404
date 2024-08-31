@@ -4,6 +4,7 @@ import {
     Text,
     TouchableOpacity,
     Image,
+    ScrollView,
 } from 'react-native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
@@ -98,6 +99,7 @@ const AnalysisScreen = () => {
     };
 
     return (
+        <ScrollView style={styles.container}>
         <View style={styles.screen}>
             {!cameraVisible && !isCameraPhoto && (
                 <>
@@ -162,6 +164,7 @@ const AnalysisScreen = () => {
                 </View>
             )}
         </View>
+        </ScrollView>
     );
 };
 
