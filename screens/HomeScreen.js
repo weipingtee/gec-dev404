@@ -35,12 +35,11 @@ const HomeScreen = () => {
         { id: '2', image: require('../assets/blue-dress.png'), price: '$28' },
         { id: '3', image: require('../assets/olive-top.png'), price: '$15' },
         { id: '4', image: require('../assets/denim-shorts.avif'), price: '$10' },
-        { id: '5', image: require('../assets/pink-dress.webp'), price: '$75' },
-        { id: '6', image: require('../assets/grey-jacket.webp'), price: '$100' },
-        { id: '7', image: require('../assets/green-top.webp'), price: '$20' },
-        { id: '8', image: require('../assets/running-shorts.webp'), price: '$30' },
-        { id: '9', image: require('../assets/orange-skirt.webp'), price: '$25' },
-        // Add more items as needed
+        { id: '5', image: require('../assets/pink-dress.jpg'), price: '$75' },
+        { id: '6', image: require('../assets/grey-jacket.jpg'), price: '$100' },
+        { id: '7', image: require('../assets/green-top.jpg'), price: '$20' },
+        { id: '8', image: require('../assets/running-shorts.jpg'), price: '$30' },
+        { id: '9', image: require('../assets/orange-skirt.jpg'), price: '$25' },
     ];
 
     const renderHotDealItem = ({ item }) => (
