@@ -94,9 +94,13 @@ const AnalysisScreen = () => {
         setIsCameraPhoto(false);
     };
 
+    const handleRemovePhoto = () => {
+        setPhoto(null);
+        setIsCameraPhoto(false);
+    };    
+
     const handleContinue = async () => {
         if (!photo) {
-            console.error("No photo to upload");
             return;
         }
     
@@ -147,7 +151,12 @@ const AnalysisScreen = () => {
 
                     <TouchableOpacity style={styles.imagePicker} onPress={selectImage}>
                         {photo ? (
-                            <Image source={{ uri: photo }} style={styles.selectedImage} />
+                            <View style={styles.photoContainer}>
+                                <Image source={{ uri: photo }} style={styles.selectedImage} />
+                                <TouchableOpacity style={styles.removeIcon} onPress={handleRemovePhoto}>
+                                    <Icon name="delete" size={24} color="#FF3B30" />
+                                </TouchableOpacity>
+                            </View>
                         ) : (
                             <View style={styles.placeholderContainer}>
                                 <Icon name="image" size={40} color="#CCC" />

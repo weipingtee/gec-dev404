@@ -37,6 +37,19 @@ const styles = StyleSheet.create({
       marginBottom: 20,
       textAlign: 'left',
   },
+  photoContainer: {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+  },
+  removeIcon: {
+      position: 'absolute',
+      top: 10,
+      right: 10,
+      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      borderRadius: 20,
+      padding: 5,
+  },
   imagePicker: {
       width: 280,
       height: 250,
