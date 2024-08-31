@@ -4,12 +4,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 40,
   },
   screen: {
       flex: 1,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      paddingTop: 40,
       backgroundColor: '#FFFFFF',
   },
   fullScreenCamera: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       textAlign: 'left',
   },
   imagePicker: {
-      width: 250,
+      width: 280,
       height: 250,
       borderRadius: 20,
       borderWidth: 2,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
       paddingVertical: 20,
       borderRadius: 30,
       width: 280,
-      marginBottom: 80,
+      marginBottom: 60,
   },
   buttonText: {
       color: '#FB1D15',
@@ -179,15 +179,15 @@ const styles = StyleSheet.create({
       marginBottom: 20,
   },
   permissionButton: {
-      backgroundColor: '#FB1D15', // Red background color matching the Continue button
+      backgroundColor: '#FB1D15',
       paddingHorizontal: 20,
       paddingVertical: 15,
       borderRadius: 30,
-      width: 200, // Fixed width for the button
+      width: 200,
       alignItems: 'center',
   },
   permissionButtonText: {
-      color: '#FFFFFF', // White text color
+      color: '#FFFFFF',
       fontSize: 16,
   },
 });

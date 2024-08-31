@@ -18,7 +18,7 @@ const AnalysisScreen = () => {
     const [permission, requestPermission] = useCameraPermissions();
     const [cameraVisible, setCameraVisible] = useState(false);
     const [photo, setPhoto] = useState(null);
-    const [isCameraPhoto, setIsCameraPhoto] = useState(false); 
+    const [isCameraPhoto, setIsCameraPhoto] = useState(false);
     const cameraRef = useRef(null);
 
     if (permission === null) {
@@ -28,11 +28,11 @@ const AnalysisScreen = () => {
             </View>
         );
     }
-    
+
     if (!permission) {
         return <View />;
     }
-    
+
     if (!permission.granted) {
         return (
             <View style={styles.permissionContainer}>
@@ -58,7 +58,7 @@ const AnalysisScreen = () => {
 
         if (!result.canceled) {
             setPhoto(result.assets[0].uri);
-            setIsCameraPhoto(false); 
+            setIsCameraPhoto(false);
         }
     };
 
@@ -66,9 +66,9 @@ const AnalysisScreen = () => {
         if (cameraRef.current) {
             try {
                 const photo = await cameraRef.current.takePictureAsync();
-                setPhoto(photo.uri);  
-                setIsCameraPhoto(true); 
-                setCameraVisible(false);  
+                setPhoto(photo.uri);
+                setIsCameraPhoto(true);
+                setCameraVisible(false);
             } catch (error) {
                 console.error('Error taking picture:', error);
             }
@@ -91,7 +91,7 @@ const AnalysisScreen = () => {
     const handleRetakePhoto = () => {
         setPhoto(null);  // Reset photo if retaking
         setCameraVisible(true);
-        setIsCameraPhoto(false); 
+        setIsCameraPhoto(false);
     };
 
     const handleContinue = () => {
@@ -109,7 +109,7 @@ const AnalysisScreen = () => {
         <ScrollView style={styles.container}>
             <View style={styles.screen}>
                 {!cameraVisible && !isCameraPhoto && (
-                    <>
+                    <ScrollView style={styles.container}>
                         <View style={styles.textContainer}>
                             <Text style={styles.title}>Upload an Image</Text>
                             <Text style={styles.subHeading}>Don't worry, your data will stay safe and private.</Text>
@@ -140,11 +140,11 @@ const AnalysisScreen = () => {
                         <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
                             <Text style={styles.continueButtonText}>Continue</Text>
                         </TouchableOpacity>
-                    </>
+                    </ScrollView>
                 )}
 
                 {cameraVisible && (
-                    <CameraView style={styles.fullScreenCamera} facing={facing} ref={cameraRef}> 
+                    <CameraView style={styles.fullScreenCamera} facing={facing} ref={cameraRef}>
                         <View style={styles.cameraOverlay}>
                             <TouchableOpacity style={styles.closeButton} onPress={handleCloseCamera}>
                                 <Icon name="arrow-back-ios" size={30} color="#FFFFFF" />
