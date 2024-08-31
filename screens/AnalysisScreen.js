@@ -6,12 +6,14 @@ import {
     Image,
     ScrollView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../analysis-style'; 
 
 const AnalysisScreen = () => {
+    const navigation = useNavigation();
     const [facing, setFacing] = useState('back');
     const [permission, requestPermission] = useCameraPermissions();
     const [cameraVisible, setCameraVisible] = useState(false);
@@ -96,6 +98,10 @@ const AnalysisScreen = () => {
 
     const handleContinue = () => {
         // Pass image to API for prediction
+
+        // Send color tone result to result screen
+        const colorTone = "nothing";
+        navigation.navigate('AnalysisResultScreen', {colorTone});
     };
 
     return (

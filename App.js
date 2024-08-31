@@ -1,12 +1,30 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import AnalysisScreen from './screens/AnalysisScreen';
+import AnalysisResultScreen from './screens/AnalysisResultScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// Create a stack navigator for the Analysis-related screens
+const AnalysisStack = createStackNavigator();
 
+const AnalysisStackScreen = () => (
+  <AnalysisStack.Navigator>
+    <AnalysisStack.Screen 
+      name="AnalysisScreen" 
+      component={AnalysisScreen} 
+      options={{ headerShown: false }}  // Hide the header for AnalysisScreen
+    />
+    <AnalysisStack.Screen 
+      name="AnalysisResultScreen" 
+      component={AnalysisResultScreen} 
+      options={{ title: 'Analysis Results', headerShown: false }} // Hide the header for AnalysisResultScreen
+    />
+  </AnalysisStack.Navigator>
+);
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +46,7 @@ const App = () => {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = 'home'; // FontAwesome icon name
+              iconName = 'home';
             } else if (route.name === 'Categories') {
               iconName = 'category';
             } else if (route.name === 'Analysis') {
@@ -41,9 +59,9 @@ const App = () => {
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Categories" component={CategoriesScreen} />
-        <Tab.Screen name="Analysis" component={AnalysisScreen} />
+        {/* Use the AnalysisStackScreen as the component for the Analysis tab */}
+        <Tab.Screen name="Analysis" component={AnalysisStackScreen} />
       </Tab.Navigator>
-
     </NavigationContainer>
   );
 };

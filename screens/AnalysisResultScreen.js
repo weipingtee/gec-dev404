@@ -3,9 +3,10 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    ScrollView,
+    TouchableOpacity,
 } from 'react-native';
-
+import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../analysis-result-style';
 
@@ -18,8 +19,8 @@ function CustomButton({ title, onPress }) {
 }
 
 const AnalysisResultScreen = () => {
-    // const colorTone =  this.props.navigation.getParam('colorTone', 'nothing sent');
-    const colorTone = 'cool summer'; // to be updated
+    const route = useRoute();
+    const colorTone = route.params.colorTone || 'nothing sent';
 
     if (colorTone == 'cool summer') {
         imageSource = require('../assets/cool-summer.png');
@@ -37,6 +38,9 @@ const AnalysisResultScreen = () => {
         imageSource = require('../assets/warm-spring.png');
         subheadingText = 'Warm Spring';
         colorToneDescription = 'This palette features light, warm tones that are vibrant and fresh. The best colors are soft yellows, peach, coral, and light greens, reminiscent of blooming flowers and sunny spring days.';
+    } else { // handling error
+        subheadingText = "An error occured. Please try again!";
+        colorToneDescription = '';
     }
 
     return (
@@ -49,7 +53,7 @@ const AnalysisResultScreen = () => {
                     style={styles.userImage}
                     source={require('../assets/cool-summer-user.jpg')}
                 />
-                <Text style={styles.subheadingText}>Cool Summer</Text>
+                <Text style={styles.subheadingText}>{subheadingText}</Text>
                 <View style={styles.line} />
                 <Text style={styles.paragraph}>{colorToneDescription}</Text>
                 <CustomButton
