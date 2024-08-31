@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+    Modal,
     View,
     Text,
     Image,
@@ -20,13 +21,81 @@ function CustomButton({ title, onPress }) {
 
 const AnalysisResultScreen = ({ navigation }) => {
     const route = useRoute();
-    const colorTone = route.params?.colorTone || 'nothing sent'; // Use optional chaining
+    const colorTone = route.params?.colorTone || 'nothing sent';
+    const errorIcon = require('../assets/error-icon.png');
+    const [description, setDescription] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
+
+    // Get user image
+    const userPic = route.params?.userImage
+        ? { uri: route.params.userImage }
+        : require('../assets/default-user.jpg');
+
     let imageSource = null;
     let subheadingText = '';
     let colorToneDescription = '';
-    let userPic = require('../assets/cool-summer-user.jpg');
-    const errorIcon = require('../assets/error-icon.png'); // Ensure this path is correct
 
+    useEffect(() => {
+        const fetchDescription = async () => {
+            let fileContent;
+            switch (colorTone) {
+                case 'cool summer':
+                    fileContent = 'This palette is characterized by typical summer softness...';
+                    break;
+                case 'cool winter':
+                    fileContent = 'This palette is defined by deep, vivid colors with a cool undertone...';
+                    break;
+                case 'warm autumn':
+                    fileContent = 'This palette is marked by earthy, rich tones that echo the warmth of autumn...';
+                    break;
+                case 'warm spring':
+                    fileContent = 'This palette features light, warm tones that are vibrant and fresh...';
+                    break;
+                default:
+                    setDescription('No description available.');
+                    return;
+            }
+            try {
+                setDescription(fileContent);
+            } catch (error) {
+                console.error('Error setting description:', error);
+                setDescription('Failed to load description.');
+            }
+        };
+        fetchDescription();
+    }, [colorTone]);
+    // useEffect(() => {
+    //     const fetchDescription = async () => {
+    //         let fileUri;
+    //         switch (colorTone) {
+    //             case 'cool summer':
+    //                 fileUri = Asset.fromModule(require('../assets/cool-summer.txt')).uri;
+    //                 break;
+    //             case 'cool winter':
+    //                 fileUri = Asset.fromModule(require('../assets/cool-winter.txt')).uri;
+    //                 break;
+    //             case 'warm autumn':
+    //                 fileUri = Asset.fromModule(require('../assets/warm-autumn.txt')).uri;
+    //                 break;
+    //             case 'warm spring':
+    //                 fileUri = Asset.fromModule(require('../assets/warm-spring.txt')).uri;
+    //                 break;
+    //             default:
+    //                 setDescription('No description available.');
+    //                 return;
+    //         }
+    //         try {
+    //             const fileContent = await fetch(fileUri).then(r => r.text());
+    //             setDescription(fileContent);
+    //         } catch (error) {
+    //             console.error('Error reading file:', error);
+    //             setDescription('Failed to load description.');
+    //         }
+    //     };
+    //     fetchDescription();
+    // }, [colorTone]);
+    
+    // Determine the color palette image and description
     if (colorTone === 'cool summer') {
         imageSource = require('../assets/cool-summer.png');
         subheadingText = 'Cool Summer';
@@ -39,16 +108,14 @@ const AnalysisResultScreen = ({ navigation }) => {
         imageSource = require('../assets/warm-autumn.png');
         subheadingText = 'Warm Autumn';
         colorToneDescription = 'This palette is marked by earthy, rich tones that echo the warmth of autumn. The best colors include deep oranges, warm browns, and olive greens, reflecting the natural hues of falling leaves and harvest time.';
-    } else if (colorTone === 'Spring') {
+    } else if (colorTone === 'warm spring') {
         imageSource = require('../assets/warm-spring.png');
         subheadingText = 'Warm Spring';
         colorToneDescription = 'This palette features light, warm tones that are vibrant and fresh. The best colors are soft yellows, peach, coral, and light greens, reminiscent of blooming flowers and sunny spring days.';
     } else {
         // Handling error case
-        subheadingText = "An error occurred. Please try again!";
-        colorToneDescription = '';
+        colorToneDescription = 'No description available.';
         imageSource = null;
-        userPic = null; // No user pic if there's an error
     }
 
     return (
@@ -58,7 +125,7 @@ const AnalysisResultScreen = ({ navigation }) => {
                     name="arrow-back"
                     size={24}
                     color="#000"
-                    onPress={() => navigation.navigate('AnalysisScreen')} // Navigate to AnalysisPage
+                    onPress={() => navigation.navigate('AnalysisScreen')} // Navigate to AnalysisScreen
                 />
                 <Text style={styles.heading}>Your Best Colours</Text>
 
@@ -77,17 +144,36 @@ const AnalysisResultScreen = ({ navigation }) => {
                             onPress={() => navigation.navigate('RecommendationScreen')}
                         />
                         <CustomButton
-                            title="More about Cool Summer"
-                            onPress={() => navigation.navigate('CoolSummer')}
+                            title={`More about ${subheadingText}`}
+                            onPress={() => setModalVisible(true)}
                         />
                     </>
                 ) : (
                     <>
                         <Image style={styles.errorImage} source={errorIcon} />
-                        <Text style={styles.subheadingText}>{subheadingText}</Text>
+                        <Text style={styles.errorText}>{"An error occurred. Please try again!"}</Text>
                     </>
                 )}
             </View>
+
+            {/* Modal for displaying the description */}
+            <Modal
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalText}>{description}</Text>
+                        <TouchableOpacity
+                            style={styles.modalButton}
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text style={styles.modalButtonText}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </ScrollView>
     );
 };
