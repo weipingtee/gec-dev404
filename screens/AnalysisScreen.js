@@ -89,89 +89,118 @@ const AnalysisScreen = () => {
     };
 
     const handleRetakePhoto = () => {
-        setPhoto(null);  // Reset photo if retaking
+        setPhoto(null);
         setCameraVisible(true);
         setIsCameraPhoto(false);
     };
 
-    const handleContinue = () => {
-        // Pass image to API for prediction
-
-        // Send result and user image to result screen
-        const colorTone = "cool summer";
-        navigation.navigate('AnalysisResultScreen', {
-            colorTone: colorTone,
-            userImage: photo,
+    const handleContinue = async () => {
+        if (!photo) {
+            console.error("No photo to upload");
+            return;
+        }
+    
+        const formData = new FormData();
+        const fileType = photo.split('.').pop();
+        const fileName = `photo.${fileType}`;
+    
+        formData.append('file', {
+            uri: photo,
+            name: fileName,
+            type: `image/${fileType}`,
         });
+    
+        try {
+            // LOCALHOST IP ADDRESS
+            const response = await fetch('http://192.168.1.102:8000/upload-image/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                body: formData,
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to upload image');
+            }
+    
+            const data = await response.json();
+            const colorTone = data.tone || "nothing";
+    
+            navigation.navigate('AnalysisResultScreen', {
+                colorTone: colorTone,
+                userImage: photo,
+            });
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
     };
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.screen}>
-                {!cameraVisible && !isCameraPhoto && (
-                    <ScrollView style={styles.container}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.title}>Upload an Image</Text>
-                            <Text style={styles.subHeading}>Don't worry, your data will stay safe and private.</Text>
-                        </View>
-
-                        <TouchableOpacity style={styles.imagePicker} onPress={selectImage}>
-                            {photo ? (
-                                <Image source={{ uri: photo }} style={styles.selectedImage} />
-                            ) : (
-                                <View style={styles.placeholderContainer}>
-                                    <Icon name="image" size={40} color="#CCC" />
-                                    <Text style={styles.placeholderText}>Select Image</Text>
-                                </View>
-                            )}
-                        </TouchableOpacity>
-
-                        <View style={styles.separatorContainer}>
-                            <View style={styles.separatorLine} />
-                            <Text style={styles.orText}>or</Text>
-                            <View style={styles.separatorLine} />
-                        </View>
-
-                        <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
-                            <Icon name="camera-alt" size={20} color="#FB1D15" />
-                            <Text style={styles.buttonText}>Open Camera & Take Photo</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-                            <Text style={styles.continueButtonText}>Continue</Text>
-                        </TouchableOpacity>
-                    </ScrollView>
-                )}
-
-                {cameraVisible && (
-                    <CameraView style={styles.fullScreenCamera} facing={facing} ref={cameraRef}>
-                        <View style={styles.cameraOverlay}>
-                            <TouchableOpacity style={styles.closeButton} onPress={handleCloseCamera}>
-                                <Icon name="arrow-back-ios" size={30} color="#FFFFFF" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.captureButton} onPress={takePicture} />
-                            <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFacing}>
-                                <Icon name="flip-camera-ios" size={30} color="#FFFFFF" />
-                            </TouchableOpacity>
-                        </View>
-                    </CameraView>
-                )}
-
-                {photo && isCameraPhoto && (
-                    <View style={styles.previewContainer}>
-                        <Image source={{ uri: photo }} style={styles.previewImage} />
-                        <View style={styles.previewOverlay}>
-                            <TouchableOpacity style={styles.closeButton} onPress={handleRetakePhoto}>
-                                <Icon name="close" size={40} color="#FFFFFF" />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPhoto}>
-                                <Icon name="check" size={40} color="#FFFFFF" />
-                            </TouchableOpacity>
-                        </View>
+        <View style={styles.screen}>
+            {!cameraVisible && !isCameraPhoto && (
+                <ScrollView style={styles.container}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.title}>Upload an Image</Text>
+                        <Text style={styles.subHeading}>Don't worry, your data will stay safe and private.</Text>
                     </View>
-                )}
-            </View>
-        </ScrollView>
+
+                    <TouchableOpacity style={styles.imagePicker} onPress={selectImage}>
+                        {photo ? (
+                            <Image source={{ uri: photo }} style={styles.selectedImage} />
+                        ) : (
+                            <View style={styles.placeholderContainer}>
+                                <Icon name="image" size={40} color="#CCC" />
+                                <Text style={styles.placeholderText}>Select Image</Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+
+                    <View style={styles.separatorContainer}>
+                        <View style={styles.separatorLine} />
+                        <Text style={styles.orText}>or</Text>
+                        <View style={styles.separatorLine} />
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={handleOpenCamera}>
+                        <Icon name="camera-alt" size={20} color="#FB1D15" />
+                        <Text style={styles.buttonText}>Open Camera & Take Photo</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
+                        <Text style={styles.continueButtonText}>Continue</Text>
+                    </TouchableOpacity>
+                </ScrollView>
+            )}
+
+            {cameraVisible && (
+                <CameraView style={styles.fullScreenCamera} facing={facing} ref={cameraRef}>
+                    <View style={styles.cameraOverlay}>
+                        <TouchableOpacity style={styles.closeButton} onPress={handleCloseCamera}>
+                            <Icon name="arrow-back-ios" size={30} color="#FFFFFF" />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.captureButton} onPress={takePicture} />
+                        <TouchableOpacity style={styles.flipButton} onPress={toggleCameraFacing}>
+                            <Icon name="flip-camera-ios" size={30} color="#FFFFFF" />
+                        </TouchableOpacity>
+                    </View>
+                </CameraView>
+            )}
+
+            {photo && isCameraPhoto && (
+                <View style={styles.previewContainer}>
+                    <Image source={{ uri: photo }} style={styles.previewImage} />
+                    <View style={styles.previewOverlay}>
+                        <TouchableOpacity style={styles.closeButton} onPress={handleRetakePhoto}>
+                            <Icon name="close" size={40} color="#FFFFFF" />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.confirmButton} onPress={handleConfirmPhoto}>
+                            <Icon name="check" size={40} color="#FFFFFF" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            )}
+        </View>
     );
 };
 
