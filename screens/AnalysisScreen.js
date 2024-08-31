@@ -113,13 +113,12 @@ const AnalysisScreen = () => {
         // Send color tone result to result screen
         const colorTone = "nothing";
         navigation.navigate('AnalysisResultScreen', { colorTone });
-    };
+    };  
 
     return (
-        <ScrollView style={styles.container}>
         <View style={styles.screen}>
             {!cameraVisible && !isCameraPhoto && (
-                <>
+                <ScrollView style={styles.container}>
                     <View style={styles.textContainer}>
                         <Text style={styles.title}>Upload an Image</Text>
                         <Text style={styles.subHeading}>Don't worry, your data will stay safe and private.</Text>
@@ -150,7 +149,7 @@ const AnalysisScreen = () => {
                     <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
                         <Text style={styles.continueButtonText}>Continue</Text>
                     </TouchableOpacity>
-                </>
+                </ScrollView>
             )}
 
             {cameraVisible && (
@@ -181,7 +180,6 @@ const AnalysisScreen = () => {
                 </View>
             )}
         </View>
-        </ScrollView>
     );
 };
 
