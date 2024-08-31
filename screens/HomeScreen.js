@@ -6,24 +6,23 @@ import {
     TouchableOpacity,
     ScrollView,
     TextInput,
+    FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../home-style'; 
 
 const HomeScreen = () => {
-    // Define state for each coupon
     const [isFollowing, setIsFollowing] = useState(false);
-
-    const handleFollowPress = () => {
-        setIsFollowing(!isFollowing);
-    };
     const [collectedCoupons, setCollectedCoupons] = useState({
         coupon1: false,
         coupon2: false,
         coupon3: false,
     });
 
-    // Handle collect button press
+    const handleFollowPress = () => {
+        setIsFollowing(!isFollowing);
+    };
+
     const handleCollectPress = (couponKey) => {
         setCollectedCoupons(prevState => ({
             ...prevState,
@@ -31,13 +30,33 @@ const HomeScreen = () => {
         }));
     };
 
+    const hotDeals = [
+        { id: '1', image: require('../assets/red-top.jpg'), price: '$35.87' },
+        { id: '2', image: require('../assets/blue-dress.png'), price: '$28' },
+        { id: '3', image: require('../assets/olive-top.png'), price: '$15' },
+        { id: '4', image: require('../assets/denim-shorts.avif'), price: '$10' },
+        { id: '5', image: require('../assets/pink-dress.webp'), price: '$75' },
+        { id: '6', image: require('../assets/grey-jacket.webp'), price: '$100' },
+        { id: '7', image: require('../assets/green-top.webp'), price: '$20' },
+        { id: '8', image: require('../assets/running-shorts.webp'), price: '$30' },
+        { id: '9', image: require('../assets/orange-skirt.webp'), price: '$25' },
+        // Add more items as needed
+    ];
+
+    const renderHotDealItem = ({ item }) => (
+        <View style={styles.hotDealItem}>
+            <Image source={item.image} style={styles.itemImage} />
+            <Text style={styles.itemPrice}>{item.price}</Text>
+        </View>
+    );
+
     return (
         <ScrollView style={styles.container}>
             {/* Top Section with Search Bar and Store Info */}
             <View style={styles.topSection}>
                 {/* Search Bar */}
                 <View style={styles.searchBarContainer}>
-                    <Icon name="arrow-back" size={24} color="#000" />
+                    <Icon name="arrow-back" size={24} color="#FFFFFF" />
                     <View style={styles.searchBar}>
                         <TextInput
                             style={styles.searchInput}
@@ -47,8 +66,8 @@ const HomeScreen = () => {
                             <Icon name="search" size={24} color="#000" />
                         </TouchableOpacity>
                     </View>
-                    <Icon name="share" size={24} color="#000" style={styles.shareIcon} />
-                    <Icon name="more-vert" size={24} color="#000" />
+                    <Icon name="share" size={24} color="#FFFF" style={styles.shareIcon} />
+                    <Icon name="more-vert" size={24} color="#FFFF" />
                 </View>
 
                 {/* Store Info */}
@@ -101,7 +120,6 @@ const HomeScreen = () => {
             <View style={styles.bannerContainer}>
                 <Text style={styles.bannerText}>Discounts and Coupons &gt;</Text>
             </View>
-
 
             {/* Discounts & Coupons Section */}
             <View style={styles.couponsContainer}>
@@ -166,35 +184,16 @@ const HomeScreen = () => {
                 </TouchableOpacity>
             </View>
 
-
             {/* Hot Deals Section */}
-            <Text style={styles.sectionTitle}>Hot deals</Text>
-            <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                style={styles.hotDeals}>
-                <View style={styles.hotDealItem}>
-                    <Image
-                        source={require('../assets/red-top.jpg')}
-                        style={styles.itemImage}
-                    />
-                    <Text style={styles.itemPrice}>SG$35.87</Text>
-                </View>
-                <View style={styles.hotDealItem}>
-                    <Image
-                        source={require('../assets/blue-dress.png')}
-                        style={styles.itemImage}
-                    />
-                    <Text style={styles.itemPrice}>SG$28</Text>
-                </View>
-                <View style={styles.hotDealItem}>
-                    <Image
-                        source={require('../assets/olive-top.png')}
-                        style={styles.itemImage}
-                    />
-                    <Text style={styles.itemPrice}>SG$15</Text>
-                </View>
-            </ScrollView>
+            <Text style={styles.sectionTitle}>Hot deals &gt;</Text>
+            <FlatList
+                data={hotDeals}
+                renderItem={renderHotDealItem}
+                keyExtractor={item => item.id}
+                numColumns={3}
+                columnWrapperStyle={styles.columnWrapper}
+                showsVerticalScrollIndicator={false}
+            />
         </ScrollView>
     );
 };

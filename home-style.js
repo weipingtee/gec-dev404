@@ -184,11 +184,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   hotDeals: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 25,
+    backgroundColor: '#fff',
   },
   hotDealItem: {
     alignItems: 'center',
     marginRight: 10,
+    marginBottom: 10,
+    flex: 1, 
   },
   itemImage: {
     width: 100,
@@ -200,6 +203,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#FF4D4D',
+  },
+  columnWrapper: {
+    justifyContent: 'space-between', 
+    paddingHorizontal: 10, 
   },
   screen: {
     flex: 1,
