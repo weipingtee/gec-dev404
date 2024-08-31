@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     View,
     Text,
@@ -6,7 +6,7 @@ import {
     Image,
     ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,6 +20,17 @@ const AnalysisScreen = () => {
     const [photo, setPhoto] = useState(null);
     const [isCameraPhoto, setIsCameraPhoto] = useState(false); 
     const cameraRef = useRef(null);
+
+    // Reset photo and camera visibility when navigating away
+    useFocusEffect(
+        React.useCallback(() => {
+            return () => {
+                setPhoto(null);
+                setCameraVisible(false);
+                setIsCameraPhoto(false);
+            };
+        }, [])
+    );
 
     if (permission === null) {
         return (
@@ -101,7 +112,7 @@ const AnalysisScreen = () => {
 
         // Send color tone result to result screen
         const colorTone = "nothing";
-        navigation.navigate('AnalysisResultScreen', {colorTone});
+        navigation.navigate('AnalysisResultScreen', { colorTone });
     };
 
     return (

@@ -50,6 +50,13 @@ const styles = StyleSheet.create({
         height: 300,
         alignSelf: 'center',
     },
+    errorImage: {
+        width: 100, 
+        height: 100, 
+        marginTop: 20,
+        marginBottom: 30,
+        alignSelf: 'center',
+    },
     userImage: {
         width: 140,
         height: 140,
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         position: 'absolute',
         left: '31.5%', 
-        top: '30%',
+        top: '28.1%',
     },
 });  
 
