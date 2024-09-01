@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Camera, CameraView, useCameraPermissions } from 'expo-camera';
+import { manipulateAsync } from 'expo-image-manipulator';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../analysis-style';
@@ -66,8 +67,15 @@ const AnalysisScreen = () => {
     const takePicture = async () => {
         if (cameraRef.current) {
             try {
-                const photo = await cameraRef.current.takePictureAsync();
-                setPhoto(photo.uri);
+                const photo = await cameraRef.current.takePictureAsync({ base64: true });
+                
+                const manipulatedPhoto = await manipulateAsync(
+                    photo.uri,
+                    [{ rotate: 0 }],
+                    { compress: 1, format: 'jpeg', base64: false }
+                );
+    
+                setPhoto(manipulatedPhoto.uri);
                 setIsCameraPhoto(true);
                 setCameraVisible(false);
             } catch (error) {
