@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../category-style'; 
 
@@ -14,7 +14,7 @@ const images = {
   'bottom2.jpg': require('../assets/running-shorts.jpg'),
   'bottom3.jpg': require('../assets/long-skirt.jpg'),
   'bottom4.jpg': require('../assets/pink-skirt.jpg'),
-  'bottom4.jpg': require('../assets/mens-jeans.jpg'),
+  'bottom5.jpg': require('../assets/mens-jeans.jpg'),
   'accessory1.jpg': require('../assets/bunny-earrings.webp'),
   'accessory2.jpg': require('../assets/hat.webp'),
   'accessory3.jpg': require('../assets/shawl.jpg'),
@@ -40,7 +40,7 @@ const categories = [
       { id: 'bottom1', name: 'Denim Shorts', price: '$25.00', image: 'bottom1.jpg' },
       { id: 'bottom2', name: 'Running Shorts', price: '$5.00', image: 'bottom2.jpg' },
       { id: 'bottom3', name: 'Green Skirt', price: '$10.00', image: 'bottom3.jpg' },
-      { id: 'bottom4', name: 'Washed Jeans', price: '$20.00', image: 'bottom4.jpg' },
+      { id: 'bottom4', name: 'Pink skirt', price: '$20.00', image: 'bottom4.jpg' },
     ]
   },
   {
@@ -105,13 +105,13 @@ const CategoriesScreen = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <FlatList
-        data={categories}
-        renderItem={renderCategory}
-        keyExtractor={item => item.id}
-      />
-    </ScrollView>
+    <FlatList
+      data={categories}
+      renderItem={renderCategory}
+      keyExtractor={item => item.id}
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    />
   );
 };
 
