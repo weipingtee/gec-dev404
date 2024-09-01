@@ -63,25 +63,36 @@ const styles = StyleSheet.create({
     marginRight: 10, // Add margin to the right of the store name
   },
   storeStatsContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-    marginBottom: 10, // Add margin below the stats container
-  },
-  storeStatsText: {
-    color: '#fff',
-    fontSize: 12,
-  },
-  storeStatsLabels: {
-    color: '#fff',
-    fontSize: 10,
-    marginTop: 5, // Space between stats text and labels
-  },
-  topTag: {
-    color: '#FF7F00',
-    fontWeight: 'bold',
-  },
+    marginTop: 8,
+},
+  storeStatsWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+},
+storeStatsItem: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginRight: 12,  // Adds spacing between items
+},
+
+storeStatsText: {
+  fontSize: 16,
+  color: '#FFFFFF',
+  lineHeight: 20,  // Ensures consistent line height
+},
+
+storeStatsLabels: {
+  color: '#888888',
+  fontSize: 12,
+  marginTop: 4,
+},
+topTag: {
+  color: '#FFA500',  // Adjust color as needed
+  fontWeight: 'bold',
+  marginLeft: 4,  // Adds space between the rating and the "Top" label
+  lineHeight: 20,  // Ensures consistent line height
+},
   statsLabel: {
     color: '#fff',
     fontSize: 12,
