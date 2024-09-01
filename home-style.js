@@ -247,33 +247,6 @@ topTag: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  recommendSection: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-  recommendItem: {
-    width: 110,
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-  recommendImg: {
-    width: 110,
-    height: 150,
-    borderRadius: 10,
-  },
-  recommendProduct: {
-    color: '#000',
-    paddingVertical: 5,
-  },
-  recommendPrice: {
-    color: '#E31A1A',
-    paddingVertical: 5,
-  },
-  pageEnd: {
-    marginTop: 5,
-    textAlign: 'center',
-  }
 });
 
 export default styles;

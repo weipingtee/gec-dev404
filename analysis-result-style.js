@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         borderRadius: 1000,
         zIndex: 1,
         position: 'absolute',
-        left: '31.5%', 
-        top: '28.1%',
+        top: 214,
+        left: 95,
     },
     errorText: {
         fontSize: 22,
