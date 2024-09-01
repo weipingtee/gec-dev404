@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import AnalysisScreen from './screens/AnalysisScreen';
 import AnalysisResultScreen from './screens/AnalysisResultScreen';
+import UserProfileScreen from './screens/ProfileScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import RecommendationScreen from './screens/RecommendationScreen';
@@ -72,7 +73,7 @@ const App = () => {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Categories" component={CategoriesScreen} />
         <Tab.Screen name="Analysis" component={AnalysisStackScreen} />
-        <Tab.Screen name="Profile" component={AnalysisStackScreen} />
+        <Tab.Screen name="Profile" component={UserProfileScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

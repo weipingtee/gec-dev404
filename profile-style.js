@@ -1,0 +1,122 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F2F2F2',
+  },
+  profileSection: {
+    alignItems: 'center',
+    paddingVertical: 40,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 25,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E6E6E6',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 20,
+    borderWidth: 2,
+    borderColor: '#FF6A00',
+  },
+  userName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333333',
+  },
+  userEmail: {
+    fontSize: 16,
+    color: '#666666',
+    marginBottom: 5,
+  },
+  userPhone: {
+    fontSize: 16,
+    color: '#666666',
+    marginBottom: 5,
+  },
+  userAddress: {
+    fontSize: 16,
+    color: '#666666',
+    textAlign: 'center',
+  },
+  section: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    marginBottom: 25,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+    marginHorizontal: 15,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FF6A00',
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FF6A00',
+    paddingBottom: 5,
+  },
+  detailItem: {
+    fontSize: 16,
+    color: '#4F4F4F',
+    marginBottom: 8,
+  },
+  subSectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    color: '#FF6A00',
+  },
+  orderItem: {
+    marginBottom: 10,
+    backgroundColor: '#F9F9F9',
+    padding: 15,
+    borderRadius: 10,
+    borderColor: '#FF6A00',
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  orderItemText: {
+    fontSize: 16,
+    color: '#333333',
+  },
+  orderItemDate: {
+    fontSize: 14,
+    color: '#888888',
+  },
+  orderItemStatus: {
+    fontSize: 14,
+    color: '#FF6A00',
+    marginTop: 5,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 18,
+    borderBottomColor: '#EEEEEE',
+    borderBottomWidth: 1,
+  },
+  menuItemText: {
+    marginLeft: 20,
+    fontSize: 16,
+    color: '#4F4F4F',
+  },
+});
+
+export default styles;
