@@ -6,16 +6,18 @@ import {
     TouchableOpacity,
     ScrollView,
 } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import styles from '../home-style';
 
 const RecommendationScreen = () => {
     const [products, setProducts] = useState([]);
+    const route = useRoute();
     const colorTone = route.params?.colorTone || 'nothing sent';
 
     const get_recommendations = async () => {
         try {
             // LOCALHOST IP ADDRESS
-            const response = await fetch(`http://localhost:8000/get-recommendations/?tone=${colorTone}`, {
+            const response = await fetch(`http://192.168.50.63:8000/get-recommendations/?tone=${colorTone}`, {
                 method: 'GET',
             });
 
