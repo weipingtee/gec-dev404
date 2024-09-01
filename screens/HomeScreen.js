@@ -74,7 +74,7 @@ const HomeScreen = () => {
                     <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.storeLogo} />
                     <View style={styles.storeDetails}>
                         <View style={styles.storeHeader}>
-                            <Text style={styles.storeName}>Toyouth</Text>
+                            <Text style={styles.storeName}>TrendyFashion03</Text>
                             <TouchableOpacity
                                 style={[styles.followButton, isFollowing ? styles.followingButton : styles.followButton]}
                                 onPress={handleFollowPress}
