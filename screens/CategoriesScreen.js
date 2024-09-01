@@ -41,7 +41,6 @@ const categories = [
       { id: 'bottom2', name: 'Running Shorts', price: '$5.00', image: 'bottom2.jpg' },
       { id: 'bottom3', name: 'Green Skirt', price: '$10.00', image: 'bottom3.jpg' },
       { id: 'bottom4', name: 'Pink skirt', price: '$20.00', image: 'bottom4.jpg' },
-      { id: 'bottom5', name: 'Washed Jeans', price: '$23.00', image: 'bottom5.jpg' },
     ]
   },
   {
