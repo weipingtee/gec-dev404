@@ -14,7 +14,7 @@ const AnalysisStack = createStackNavigator();
 const AnalysisStackScreen = () => (
   <AnalysisStack.Navigator>
     <AnalysisStack.Screen 
-      name="AnalysisScreen" 
+      name="AnalysisScreen"
       component={AnalysisScreen} 
       options={{ headerShown: false }}  // Hide the header for AnalysisScreen
     />
