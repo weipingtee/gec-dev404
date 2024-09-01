@@ -7,6 +7,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import AnalysisScreen from './screens/AnalysisScreen';
 import AnalysisResultScreen from './screens/AnalysisResultScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import RecommendationScreen from './screens/RecommendationScreen';
 
 // Create a stack navigator for the Analysis-related screens
 const AnalysisStack = createStackNavigator();
@@ -22,6 +23,11 @@ const AnalysisStackScreen = () => (
       name="AnalysisResultScreen" 
       component={AnalysisResultScreen} 
       options={{ title: 'Analysis Results', headerShown: false }} // Hide the header for AnalysisResultScreen
+    />
+    <AnalysisStack.Screen 
+      name="RecommendationScreen" 
+      component={RecommendationScreen} 
+      options={{ title: 'Recommendations for you' }}
     />
   </AnalysisStack.Navigator>
 );
