@@ -7,6 +7,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import AnalysisScreen from './screens/AnalysisScreen';
 import AnalysisResultScreen from './screens/AnalysisResultScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import RecommendationScreen from './screens/RecommendationScreen';
 
 // Create a stack navigator for the Analysis-related screens
@@ -50,23 +51,28 @@ const App = () => {
           ],
           tabBarIcon: ({ color, size }) => {
             let iconName;
+            let IconComponent = Icon;
 
             if (route.name === 'Home') {
               iconName = 'home';
             } else if (route.name === 'Categories') {
               iconName = 'category';
             } else if (route.name === 'Analysis') {
-              iconName = 'bar-chart';
+              iconName = 'face-recognition';
+              IconComponent = MaterialCommunityIcons;
+            } else if (route.name === 'Profile') {
+              iconName = 'human';
+              IconComponent = MaterialCommunityIcons;
             }
 
-            return <Icon name={iconName} size={size} color={color} />;
+            return <IconComponent name={iconName} size={size} color={color} />;
           },
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Categories" component={CategoriesScreen} />
-        {/* Use the AnalysisStackScreen as the component for the Analysis tab */}
         <Tab.Screen name="Analysis" component={AnalysisStackScreen} />
+        <Tab.Screen name="Profile" component={AnalysisStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
