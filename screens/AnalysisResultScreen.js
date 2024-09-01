@@ -141,7 +141,9 @@ const AnalysisResultScreen = ({ navigation }) => {
                         {/* Render buttons only if imageSource is not null */}
                         <CustomButton
                             title="Get Recommendations"
-                            onPress={() => navigation.navigate('RecommendationScreen')}
+                            onPress={() => navigation.navigate('RecommendationScreen', {
+                                colorTone: colorTone,
+                            })}
                         />
                         <CustomButton
                             title={`More about ${subheadingText}`}
