@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../home-style';
+import storeLogo from '../assets/shopping-online.jpg';
 
 const HomeScreen = () => {
     const [isFollowing, setIsFollowing] = useState(false);
@@ -70,7 +71,7 @@ const HomeScreen = () => {
 
                 {/* Store Info */}
                 <View style={styles.storeInfo}>
-                    <Image source={{ uri: 'https://via.placeholder.com/50' }} style={styles.storeLogo} />
+                    <Image source={storeLogo} style={styles.storeLogo} />
                     <View style={styles.storeDetails}>
                         <View style={styles.storeHeader}>
                             <Text style={styles.storeName}>TrendyFashion03</Text>

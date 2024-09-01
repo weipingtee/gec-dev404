@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from '../profile-style';
+import profilePic from '../assets/profile-pic.png';
 
 const UserProfileScreen = ({ navigation }) => {
   const userData = {
@@ -9,7 +10,7 @@ const UserProfileScreen = ({ navigation }) => {
     email: 'johnlim@mail.com',
     phoneNumber: '+13063897221',
     address: '123 Xixi St, Hangzhou, China',
-    profilePicture: 'https://via.placeholder.com/100',
+    profilePicture: profilePic,
     membershipLevel: 'Gold',
     loyaltyPoints: 1500,
     accountCreationDate: 'January 1, 2021',
@@ -25,7 +26,7 @@ const UserProfileScreen = ({ navigation }) => {
       <View style={styles.profileSection}>
         <Image
           style={styles.profileImage}
-          source={{ uri: userData.profilePicture }}
+          source={userData.profilePicture }
         />
         <Text style={styles.userName}>{userData.name}</Text>
         <Text style={styles.userEmail}>{userData.email}</Text>
