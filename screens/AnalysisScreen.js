@@ -125,7 +125,7 @@ const AnalysisScreen = () => {
     
         try {
             // LOCALHOST IP ADDRESS
-            const response = await fetch('http://192.168.50.63:8000/upload-image/', {
+            const response = await fetch('http://30.168.0.104:8000/upload-image/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'multipart/form-data',

@@ -18,7 +18,7 @@ const UserProfileScreen = ({ navigation }) => {
       { id: 1, item: 'Wireless Earbuds', date: '2024-08-30', status: 'Delivered' },
       { id: 2, item: 'Smart Watch', date: '2024-08-25', status: 'Shipped' },
     ],
-    colorAnalysisTone: 'Cool Summer',
+    colorAnalysisTone: 'Warm Autumn',
   };
 
   return (

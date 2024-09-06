@@ -29,7 +29,7 @@ const RecommendationScreen = () => {
         try {
             setLoading(true);
             // LOCALHOST IP ADDRESS
-            const response = await fetch(`http://192.168.50.63:8000/get-recommendations/?tone=${colorTone}`, {
+            const response = await fetch(`http://30.168.0.104:8000/get-recommendations/?tone=${colorTone}`, {
                 method: 'GET',
             });
 
